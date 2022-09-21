@@ -1,6 +1,8 @@
 // Sean Wallace September 2022 weather_storage.js
 
 // GLOBALS
+const gLocalStorageEntryName = 'citiesLatitudeLongitude';
+
 let gLocalStorageCities = localStorage.getItem('citiesLatitudeLongitude');
 console.log('gLocalStorageCities XXXXXXXXXXXX EVERY TIME WE LOAD');
 if (gLocalStorageCities && gLocalStorageCities != null) {
@@ -8,9 +10,6 @@ if (gLocalStorageCities && gLocalStorageCities != null) {
 } else {
   console.log('gLocalStorageCities/citiesLatitudeLongitude is empty!');
 }
-
-let cities = [];
-
 
 //  DOM
 var chosenShortList = document.getElementById("shortList");
@@ -22,26 +21,27 @@ function clearShortlist() {
   weatherCardEl.classList.add('hide');
 };
 
+
 // store in local storage
+// NOTE: json response data can have mutliple records which gets stored but we are only interested in 0 index record
 function storeCity(cityJSONdata) {
-  console.log(cityJSONdata);
-  console.log(cityJSONdata[0].name);				
-  console.log(cityJSONdata[0].lat);				
-  console.log(cityJSONdata[0].lon);
+    console.log(cityJSONdata);
+    console.log(cityJSONdata[0].name);				
+    console.log(cityJSONdata[0].lat);				
+    console.log(cityJSONdata[0].lon);
+    
+    let storedCities = localStorage.getItem(gLocalStorageEntryName);
 
-
-  // var shortlistProperties = localStorage.getItem('shortlistProperties');
-
-  // if (shortlistProperties && shortlistProperties != null) {
-  //   var myArr = JSON.parse(shortlistProperties);
-  //   myArr.push(property);
-  //   localStorage.setItem('shortlistProperties', myArr);
-  //   localStorage.setItem('shortlistProperties', JSON.stringify(myArr));
-  // }
-  // else {
-  //   localStorage.setItem('shortlistProperties', JSON.stringify([property]));
-  // };
-
+    // if there are stored cities we will add to them otherwise we will store the first record
+    // MVP: this does not check if a city has already been stored so duplicates can occur
+    if (storedCities && storedCities != null) {
+      let cities = JSON.parse(storedCities);
+console.log(cities);
+      cities.push(cityJSONdata);
+      localStorage.setItem(gLocalStorageEntryName, JSON.stringify(cities));
+    } else {
+      localStorage.setItem(gLocalStorageEntryName, JSON.stringify([cityJSONdata]));
+  };
   // reload();
 };
 

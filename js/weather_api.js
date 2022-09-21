@@ -1,8 +1,6 @@
 // Sean Wallace September 2022 weather_api.js
-// module.exports = {
-// 	getCityWeatherApi: (testStringSean)
-// };
 // NOTE: js front-end does not do exports/require; only nodejs does
+// MVP: the city fetch does not filter by country, eg Newcastle AUS will never be found whereas Newcastle UK will
 const weatherAPIAppId = '85572fccbd008e17b2a41bc1471e6c04';
 
 function getCityLatLon(cityNameToFetch) {
@@ -21,11 +19,7 @@ function getCityLatLon(cityNameToFetch) {
 			if (dataCityLatLon.length === 0) {
 				console.log('unknown city found')
 			} else {
-				// console.log(dataCityLatLon);
-				// assumption: since the 0 index record always exists if lenght <> 0 we assume it's the best lat/lon data
-				// console.log(dataCityLatLon[0].name);				
-				// console.log(dataCityLatLon[0].lat);				
-				// console.log(dataCityLatLon[0].lon);
+				// assumption: since the 0 index record always exists if lenght <> 0 we assume it's the best lat/lon data record
 				// API documentation confirms: fetch result is JSON
 				storeCity(dataCityLatLon);
 			};
@@ -37,7 +31,9 @@ function getCityLatLon(cityNameToFetch) {
 			// weatherCardEl.classList.remove('hide');
 			// document.getElementById("weatherInfoCard").scrollIntoView();
 		})
-		.catch(function () {console.log('fetch city failed')
+		.catch(function (response) {
+			alert(response)
+			console.log('fetch city failed');
 		});
 }
 
@@ -72,7 +68,10 @@ function getCityCurrentWeatherApi(btnShortlistClicked) {
 				document.querySelector("#humidity").innerHTML = data.main.humidity;
 				weatherCardEl.classList.remove('hide');
 				document.getElementById("weatherInfoCard").scrollIntoView();
-			});
+			})
+			.catch(function (response){
+				alert(response);
+			} );
 	};
 };
 
