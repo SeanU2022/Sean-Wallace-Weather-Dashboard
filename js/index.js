@@ -5,6 +5,7 @@
 // DOM
 const cityName = document.getElementById("city-name-input");
 const btnCityNameSearch = document.getElementById("city-name-btn-search");
+const btnCityListClear = document.getElementById("city-list-btn-clear");
 
 
 
@@ -28,7 +29,7 @@ btnCityNameSearch.addEventListener("click", function (event) {
     }
 });
 
-// Execute press of Enter key only
+// Execute press of Enter key only for search
 cityName.addEventListener("keypress", function (event) {
     // If the user presses the “Enter” key on the keyboard
     if (event.key === "Enter") {
@@ -37,4 +38,11 @@ cityName.addEventListener("keypress", function (event) {
         // Trigger the button element with a click
         btnCityNameSearch.click();
     }
+});
+
+// Excute the clear in weather_storage.js
+btnCityListClear.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    clearCityList();
 });

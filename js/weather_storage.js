@@ -15,20 +15,19 @@ if (gLocalStorageCities && gLocalStorageCities != null) {
 var chosenShortList = document.getElementById("shortList");
 var buttonClearShortlist = document.getElementById("button-clear-shortlist");
 
-function clearShortlist() {
+function clearCityList() {
   localStorage.clear();
-  reload();
-  weatherCardEl.classList.add('hide');
+  // reload();
+  // weather elements?.classList.add('hide');
 };
-
 
 // store in local storage
 // NOTE: json response data can have mutliple records which gets stored but we are only interested in 0 index record
 function storeCity(cityJSONdata) {
-    console.log(cityJSONdata);
-    console.log(cityJSONdata[0].name);				
-    console.log(cityJSONdata[0].lat);				
-    console.log(cityJSONdata[0].lon);
+console.log(cityJSONdata);
+console.log(cityJSONdata[0].name);				
+console.log(cityJSONdata[0].lat);				
+console.log(cityJSONdata[0].lon);
     
     let storedCities = localStorage.getItem(gLocalStorageEntryName);
 
