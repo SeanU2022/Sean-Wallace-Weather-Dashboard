@@ -3,16 +3,22 @@ body {
 }
 
 h1 {
-  background-image: linear-gradient(25deg, white, white, blue, purple, blue, blue, purple, blue, white, white);
+  background-image: linear-gradient(35deg,orange, gold, palegoldenrod, white, cyan, aqua, deepskyblue,  cornflowerblue, darkcyan, blue, blue, purple, blue, darkblue, black);
   margin-bottom: 0; /* override BS5 */
 }
 
 .btn-weather-colour {
-  background-image: linear-gradient(15deg, white, blue, purple, blue, blue, purple, blue, white);
+  /* background-image: linear-gradient(35deg, cornflowerblue, darkcyan, blue, blue, purple, blue, darkblue, black); */
+  /* background-image: linear-gradient(215deg, white, gold, palegoldenrod, gold, gold, palegoldenrod, white, cyan, aqua, deepskyblue); */
+  background-image: linear-gradient(35deg,orange, gold, palegoldenrod, white, cyan, aqua, deepskyblue,  cornflowerblue, darkcyan, blue, blue, purple, blue, darkblue, black);
 }
 
-#side-left {
-  /* background-image: linear-gradient(45deg, white, white,  white, blue, purple); */
+#card-left-side-cities {
+  /* background-image: linear-gradient(215deg, white, gold, palegoldenrod, gold, gold, palegoldenrod, white, cyan, aqua, deepskyblue); */
+}
+
+#city-name {
+  margin: 5px 0px 5px 0px;
 }
 
 #weather-report {
