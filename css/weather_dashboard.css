@@ -1,0 +1,35 @@
+body {
+    /* background-image: linear-gradient(25deg, white, white, white,  white, white, blue, blue, purple, blue, blue, blue); */
+}
+
+h1 {
+  background-image: linear-gradient(25deg, white, white, blue, purple, blue, blue, purple, blue, white, white);
+  margin-bottom: 0; /* override BS5 */
+}
+
+.btn-weather-colour {
+  background-image: linear-gradient(15deg, white, blue, purple, blue, blue, purple, blue, white);
+}
+
+#side-left {
+  /* background-image: linear-gradient(45deg, white, white,  white, blue, purple); */
+}
+
+#weather-report {
+  /* background-image: linear-gradient(37deg, white,  white, purple, blue, white, white); */
+}
+
+/* #gradient-text-sean {
+  background-image: 
+    linear-gradient(90deg, red, blue);
+  background-clip: text;
+  color: green;
+} */
+
+.container {
+  max-width: 960px;
+}
+
+.pricing-header {
+  max-width: 700px;
+}

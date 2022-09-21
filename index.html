@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link href="./css/weather_dashboard.css" rel="stylesheet">
+    <title>Sean Weather Dashboard</title>
+</head>
+<body>
+    <div class="d-flex flex-wrap">
+        <h1 class="p-2 col-12 header text-center text-light">Weather Dashboard</h1>
+
+        <div class="p-2 col-12 col-sm-2 start-0" id="side-left">side left
+          <!-- <form>
+            <input type="text" name="city-name" id="city-name" placeholder="enter city" />
+        </form> -->
+            <div class="form-group">
+              <!-- <label for="cityName">Email address</label> -->
+              <input type="text" class="form-control" id="city-name" aria-describedby="city weather" placeholder="type in city name">
+              <small id="city-weather" class="form-text text-light">Is climate change real?</small>
+            </div>
+            <button type="button" class="w-100 btn btn-lg border-0 btn-weather-colour text-light fs-6">Get started</button>
+            <p>City One</p>
+            <p>City Two</p>
+        </div>
+
+
+        <div class="p-2 col-12 col-sm-10 main-section" id="weather-report">main
+
+            <div class="p-2 col-12 col-sm-10 border border-dark opacity-100 rounded-top rounded-bottom">
+                <p>Weather</p>
+                <p>details</p>
+                <p>city</p>
+                <p>temperature</p>
+            </div>
+
+            <div class="p-2 col-12">
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-start">
+                    <div class="col">
+                      <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                          <h4 class="my-0 fw-normal">Free</h4>
+                        </div>
+                        <div class="card-body">
+                          <h2 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h2>
+                          <ul class="list-unstyled mt-3 mb-4">
+                            <li>10 users included</li>
+                            <li>2 GB of storage</li>
+                            <li>Email support</li>
+                            <li>Help center access</li>
+                          </ul>
+                          <button type="button" class="w-100 btn btn-lg btn-outline-primary fs-6">Sign up for free</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                          <h4 class="my-0 fw-normal">Pro</h4>
+                        </div>
+                        <div class="card-body">
+                          <h2 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h2>
+                          <ul class="list-unstyled mt-3 mb-4">
+                            <li>20 users included</li>
+                            <li>10 GB of storage</li>
+                            <li>Priority email support</li>
+                            <li>Help center access</li>
+                          </ul>
+                          <button type="button" class="w-100 btn btn-lg border-0 btn-weather-colour text-light fs-6">Get started</button>
+                        </div>
+                      </div>
+                    </div>
+            </div> 
+
+        </div>
+        <!-- <div class="p-2 col-12 col-md-3 right order-4 bg-danger">side right</div> -->
+
+    </div>
+
+    <div class="p-2 col-12 foot order-4 bg-primary">footer</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> -->
+</body>
+</html>
