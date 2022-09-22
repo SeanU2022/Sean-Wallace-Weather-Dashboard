@@ -128,5 +128,9 @@ function getCityWeather(btnCityListClicked) {
 				} );
 // what did we get?
 			console.log(cityDateYYYYMMDDForecastArray);
+			for (let indexRFC = 0; indexRFC < cityDateYYYYMMDDForecastArray.length; indexRFC++) {
+				// const element = array[indexRFC];
+				renderForecastCard(wfContainer, 'title', '', '','');
+			}
 	};
 };
