@@ -40,7 +40,7 @@ function getCityWeather(btnCityListClicked) {
 		let cityLat;
 		let cityLon;
 		let cityName;
-		let cityDateToday;
+		let cityDateYYYYMMDDToday;
 
 		// each city button could have many occurrances of that name: eg Newcastle, Haha (yes this is many cities)
 		// we are only interested in the zero index city as that is what was used to create the button in the first place
@@ -71,46 +71,62 @@ function getCityWeather(btnCityListClicked) {
 				return response.json();
 			})
 			.then(function (data) {
-				cityDateToday = data.date_iso;
-				cityDateToday = cityDateToday.slice(0,10);
-				renderCity(cityName, cityDateToday)
+				cityDateYYYYMMDDToday = data.date_iso;
+				cityDateYYYYMMDDToday = cityDateYYYYMMDDToday.slice(0,10);
+				renderCity(cityName, cityDateYYYYMMDDToday)
 				renderUV(data.value)
 			})
 			.catch(function (response){
 				alert(response);
 			} );
-
 						
 			console.log('GETCITYFORECAST==> GETCITYFORECAST==> GETCITYFORECAST==>');
 			console.log(cityLat);
 			console.log(cityLon);
-						
-	
+			
+			// MVP: not the best code I've written; it needs refactoring but it works
+			let cityDateYYYYMMDDForecast;
+			let cityDateYYYYMMDDForecastArray = [];
+			let bFound = false;
+
 			let weatherForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + cityLat + '&lon=' + cityLon + '&appid=' + weatherAPIAppId;
+
 			fetch(weatherForecastUrl)
 				.then(function (response) {
 					return response.json();
 				})
 				.then(function (data) {
-					console.log(data);
-					data.list.forEach( (futureDate, index) => {
-						console.log( futureDate.dt_txt );
-						// const 
-						
-					//	cityDateToday
+					// console.log(data);
+					// console.log('DDDDDDDDDDDDDDDDDDDDD');
+					data.list.forEach( (futureDate, index) => {						
+						cityDateYYYYMMDDForecast = futureDate.dt_txt;
+						cityDateYYYYMMDDForecast = cityDateYYYYMMDDForecast.slice(0,10);
+						// add unique future dates to an array for the forecast rendering
+						if (cityDateYYYYMMDDForecast > cityDateYYYYMMDDToday) {
 
-
-
-						// if (index === 0) {
-						// 	cityLat = cityWithThisName.lat;
-						// 	cityLon = cityWithThisName.lon;
-						// 	cityName = cityWithThisName.name;
-						// };
+							if (cityDateYYYYMMDDForecastArray.length > 0) {
+								for (let indexFA = 0; indexFA < cityDateYYYYMMDDForecastArray.length; indexFA++) {
+									if (cityDateYYYYMMDDForecast === cityDateYYYYMMDDForecastArray[indexFA]) {
+										bFound = true;
+									}
+								}
+								if (!bFound) {
+									cityDateYYYYMMDDForecastArray.push(cityDateYYYYMMDDForecast);
+								};
+								bFound = false;
+							} else {
+								cityDateYYYYMMDDForecastArray.push(cityDateYYYYMMDDForecast);
+							};
+							console.log(cityDateYYYYMMDDForecastArray.length);
+						} else {
+							//  console.log( futureDate.dt_txt );
+						};
 					});
-			})
-			.catch(function (response){
-				alert(response);
-			} );
-	
+				})
+				.catch(function (response){
+					alert(response);
+				} );
+// what did we get?
+			console.log(cityDateYYYYMMDDForecastArray);
 	};
 };
