@@ -46,3 +46,12 @@ btnCityListClear.addEventListener("click", function (event) {
     event.stopPropagation();
     clearCityList();
 });
+
+// Execute dynamically generated city button click
+// event listener is defined in weather_storage.js>reload()
+function btnCityListClick(event, buttonId) {
+	event.preventDefault();
+	event.stopPropagation();
+	// getCityCurrentWeatherApi(buttonId);
+    alert(buttonId + ' got clicked');
+}

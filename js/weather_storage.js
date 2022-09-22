@@ -12,75 +12,60 @@ if (gLocalStorageCities && gLocalStorageCities != null) {
 }
 
 //  DOM
-var chosenShortList = document.getElementById("shortList");
-var buttonClearShortlist = document.getElementById("button-clear-shortlist");
+const citiesList = document.getElementById("cities-list");
 
+// MVP: should search for gLocal key - to be done in future release
 function clearCityList() {
   localStorage.clear();
-  // reload();
+  reload();
   // weather elements?.classList.add('hide');
 };
 
 // store in local storage
 // NOTE: json response data can have mutliple records which gets stored but we are only interested in 0 index record
 function storeCity(cityJSONdata) {
-console.log(cityJSONdata);
-console.log(cityJSONdata[0].name);				
-console.log(cityJSONdata[0].lat);				
-console.log(cityJSONdata[0].lon);
-    
     let storedCities = localStorage.getItem(gLocalStorageEntryName);
 
     // if there are stored cities we will add to them otherwise we will store the first record
     // MVP: this does not check if a city has already been stored so duplicates can occur
     if (storedCities && storedCities != null) {
       let cities = JSON.parse(storedCities);
-console.log(cities);
       cities.push(cityJSONdata);
       localStorage.setItem(gLocalStorageEntryName, JSON.stringify(cities));
     } else {
       localStorage.setItem(gLocalStorageEntryName, JSON.stringify([cityJSONdata]));
   };
-  // reload();
+  reload();
 };
 
-//retrieve from local storage
+//retrieve from local storage and render city buttons as children of #cities-list
 function reload() {
+  let citiesListArrayUnparsed = [];
+  citiesListArrayUnparsed = localStorage.getItem(gLocalStorageEntryName);
 
-  var shortlistButtonId = 0;
-  var shortlistProperties = [];
-  shortlistProperties = localStorage.getItem('shortlistProperties');
+  $("#cities-list").html("");
 
-  $("#shortList").html("");
+  if (citiesListArrayUnparsed && citiesListArrayUnparsed != null) {
+    let citiesListArray = JSON.parse(citiesListArrayUnparsed);
 
-  if (shortlistProperties && shortlistProperties != null) {
-    console.log(shortlistProperties.length);
+    citiesListArray.forEach( ( element, index ) => {
 
-    var arrShortlist = JSON.parse(shortlistProperties);
-    arrShortlist.forEach(element => {
-      var shortListItem;
-      shortListItem = document.createElement("button");
-      if (element.listing.propertyDetails.displayableAddress) {
-        shortListItem.textContent = element.listing.propertyDetails.displayableAddress;        
-      } else {
-        shortListItem.textContent = "Address unknown";
-        console.log("storage bad record ");
-        console.log("element.listing.propertyDetails.displayableAddress");
-      };
-      shortListItem.setAttribute("id", "btn-shortlist" + shortlistButtonId);
-      chosenShortList.appendChild(shortListItem);
-      shortListItem.addEventListener("click", (e) => {
-        btnShortlistClick(e, e.target.id);
+      let btnCityName;
+      btnCityName = document.createElement("button");
+      btnCityName.setAttribute("id", "btn-city" + index);           // the index is used to name buttons uniquely
+      btnCityName.setAttribute("class", "w-100 mb-1 btn btn-lg btn-outline-info fs-6");
+      btnCityName.textContent = element[0].name;                    // name is an attribute of the parsed JSON data
+      citiesList.appendChild(btnCityName);
+
+      btnCityName.addEventListener("click", (e) => {
+        btnCityListClick(e, e.target.id);
       });
-      shortlistButtonId++;
     });
   }
+
+  // since local storage is empty nothing is to be done on index page
+
 };
 
+// reload is in weather_storage.js
 window.addEventListener('load', reload);
-
-// buttonClearShortlist.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   event.stopPropagation();
-//   clearShortlist();
-// });

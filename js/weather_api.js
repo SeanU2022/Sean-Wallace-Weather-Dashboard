@@ -74,10 +74,3 @@ function getCityCurrentWeatherApi(btnShortlistClicked) {
 			} );
 	};
 };
-
-
-function btnShortlistClick(event, buttonId) {
-	event.preventDefault();
-	event.stopPropagation();
-	getCityCurrentWeatherApi(buttonId);
-}
