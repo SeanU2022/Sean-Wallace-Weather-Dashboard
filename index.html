@@ -11,35 +11,41 @@
     <title>Seano's Weather Dashboard</title>
 </head>
 <body>
-    <div class="d-flex flex-wrap">
+    <div-fw class="d-flex flex-wrap">
         <h1 class="p-2 col-12 header text-center text-light">Weather Dashboard</h1>
 
-        <div class="p-2 col-12 col-sm-2 start-0" id="card-cities-left-side">
+        <div  id="card-cities-left-side" class="p-2 col-12 col-sm-2 start-0">
             <div class="form-group">
               <label for="city-search">Search for a City:</label>
-              <input type="text" class="form-control" id="city-name-input" aria-describedby="city search" placeholder="type in city name">
+              <input type="text" id="city-name-input" class="form-control" aria-describedby="city search" placeholder="type in city name">
             </div>
-            <button type="button" class="w-100 my-2 btn btn-lg border-2 btn-weather-colour text-light fs-6" id="city-name-btn-search">Search</button>
-            <button type="button" class="w-100 mb-2 btn btn-lg border-2 btn-weather-colour text-light fs-6" id="city-list-btn-clear">Clear list</button>
+            <button type="button" id="city-name-btn-search" class="w-100 my-2 btn btn-lg border-2 btn-weather-colour text-light fs-6">Search</button>
+            <button type="button" id="city-list-btn-clear" class="w-100 mb-2 btn btn-lg border-2 btn-weather-colour text-light fs-6">Clear list</button>
             <div id="cities-list">
               <!-- buttons to be rendered by weather_storage.js>reload() -->
             </div>
         </div>
 
 
-        <div class="p-2 col-12 col-sm-10 main-section" id="weather-report">main
+        <div-right-body class="p-2 col-12 col-sm-10 main-section" id="weather-report">main
 
-            <div class="p-2 col-12 col-sm-10 border border-dark opacity-100 rounded-top rounded-bottom">
-                <p>Weather</p>
-                <p>details</p>
-                <p>city</p>
-                <p>temperature</p>
+            <div id="current-weather" class="p-2 col-12 col-sm-10 border border-dark opacity-100 rounded-top rounded-bottom">
+                <h2 id="current-weather-city">City Name</h2>
+                <ul id="current-weather-conditions" class="list-unstyled mt-3 mb-4">
+                  <!-- cwc = current-weather-conditions -->
+                  <li id="cwc-temp">Temperature:</li>
+                  <li id="cwc-wind">Wind:</li>
+                  <li id="cwc-humidity">Humidity:</li>
+                  <li id="cwc-UV">UV Index:</li>
+                </ul>
+
                 <a href="https://getbootstrap.com/docs/5.0/utilities/visibility/">toggle visibility</a>
                 <a href="https://getbootstrap.com/docs/5.0/utilities/spacing/">margin and padding</a>
             </div>
 
-            <div class="p-2 col-12">
+            <div id="future-weather" class="p-2 col-12">
                 <div class="row row-cols-1 row-cols-md-3 mb-3 text-start">
+
                     <div class="col">
                       <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
@@ -57,6 +63,7 @@
                         </div>
                       </div>
                     </div>
+
                     <div class="col">
                       <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
@@ -74,12 +81,12 @@
                         </div>
                       </div>
                     </div>
-            </div> 
-
-        </div>
+                </div> 
+            </div>
         <!-- <div class="p-2 col-12 col-md-3 right order-4 bg-danger">side right</div> -->
 
-    </div>
+        </div-right-body>
+    </div-fw>
 
     <div class="p-2 col-12 foot order-4 bg-primary">footer</div>
     

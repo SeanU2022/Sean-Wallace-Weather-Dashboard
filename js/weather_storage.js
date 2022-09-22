@@ -3,14 +3,6 @@
 // GLOBALS
 const gLocalStorageEntryName = 'citiesLatitudeLongitude';
 
-// let gLocalStorageCities = localStorage.getItem('citiesLatitudeLongitude');
-// console.log('gLocalStorageCities XXXXXXXXXXXX EVERY TIME WE LOAD');
-// if (gLocalStorageCities && gLocalStorageCities != null) {
-//   console.log(gLocalStorageCities);
-// } else {
-//   console.log('gLocalStorageCities/citiesLatitudeLongitude is empty!');
-// }
-
 //  DOM
 const citiesList = document.getElementById("cities-list");
 
@@ -53,6 +45,7 @@ function reload() {
       btnCityName = document.createElement("button");
       btnCityName.setAttribute("id", "btn-city" + index);           // the index is used to name buttons uniquely
       btnCityName.setAttribute("class", "w-100 mb-1 btn btn-lg btn-outline-info fs-6");
+      // assumption: since the 0 index record always exists if length <> 0 we assume it's the best lat/lon data record
       btnCityName.textContent = element[0].name;                    // name is an attribute of the parsed JSON data
       citiesList.appendChild(btnCityName);
 

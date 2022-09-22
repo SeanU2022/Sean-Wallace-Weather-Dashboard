@@ -19,7 +19,7 @@ function getCityLatLon(cityNameToFetch) {
 			if (dataCityLatLon.length === 0) {
 				console.log('unknown city found')
 			} else {
-				// assumption: since the 0 index record always exists if lenght <> 0 we assume it's the best lat/lon data record
+				// assumption: since the 0 index record always exists if length <> 0 we assume it's the best lat/lon data record
 				// API documentation confirms: fetch result is JSON
 				storeCity(dataCityLatLon);
 			};
@@ -39,35 +39,51 @@ function getCityLatLon(cityNameToFetch) {
 
 // weather authentication
 
-const weatherCardEl = document.getElementById('weatherInfoCard');
+// const weatherCardEl = document.getElementById('weatherInfoCard');
 
 
-function getCityCurrentWeatherApi(btnShortlistClicked) {
-	var shortlistProperties = localStorage.getItem('shortlistProperties');
+function getCityCurrentWeather(btnCityListClicked) {
+	let storedCities = localStorage.getItem(gLocalStorageEntryName);
 
-	if (shortlistProperties && shortlistProperties != null) {
+	if (storedCities && storedCities != null) {
+		// retrieve the stored cities
+		let parsedCities = JSON.parse(storedCities);
 
 		// get clicked button number to target array/local storage record number
-		var localStorageRow = btnShortlistClicked.match(/\d+/);
+		let localStorageRow = btnCityListClicked.match(/\d+/);
 
-		var storedShortlistProperties = JSON.parse(shortlistProperties);
+		let cityLat;
+		let cityLon;
 
-		var locationLat = storedShortlistProperties[localStorageRow].listing.propertyDetails.latitude;
-		var locationLon = storedShortlistProperties[localStorageRow].listing.propertyDetails.longitude;
+		// each city button could have many occurrances of that name: eg Newcastle, Haha (yes this is many cities)
+		// we are only interested in the zero index city as that is what was used to create the button in the first place
+		parsedCities[localStorageRow].forEach( (cityWithThisName, index) => {
+			if (index === 0) {
+				cityLat = cityWithThisName.lat;
+				cityLon = cityWithThisName.lon;
+			};
+			console.log(`at index=${index}: this is the ${index+1}st/nd/rd/th occurance of ${cityWithThisName.name}`);
+		});
 
-		//Loop over the data to generate a table, each table row will have a link to the repo url
-		var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + locationLat + '&lon=' + locationLon + '&units=metric' + '&appid=' + weatherAPIAppId;
+console.log('XXXXXXXXXXXXXXXXXXXXXXZZZZZZZZZZZZZZZZZZZZZYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
+console.log(cityLat);
+console.log(cityLon);
+
+		let weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + cityLat + '&lon=' + cityLon + '&units=metric' + '&appid=' + weatherAPIAppId;
 		fetch(weatherUrl)
 			.then(function (response) {
 				return response.json();
 			})
 			.then(function (data) {
-				document.querySelector("#temp").innerHTML = data.main.temp;
-				document.querySelector("#feels-like").innerHTML = data.main.feels_like;
-				document.querySelector("#wind").innerHTML = data.wind.speed;
-				document.querySelector("#humidity").innerHTML = data.main.humidity;
-				weatherCardEl.classList.remove('hide');
-				document.getElementById("weatherInfoCard").scrollIntoView();
+				// document.querySelector("#temp").innerHTML = data.main.temp;
+				// document.querySelector("#feels-like").innerHTML = data.main.feels_like;
+				// document.querySelector("#wind").innerHTML = data.wind.speed;
+				// document.querySelector("#humidity").innerHTML = data.main.humidity;
+				// weatherCardEl.classList.remove('hide');
+				// document.getElementById("weatherInfoCard").scrollIntoView();
+console.log(data.main.temp);
+console.log(data.wind.speed);
+console.log(data.main.humidity);
 			})
 			.catch(function (response){
 				alert(response);
