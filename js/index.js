@@ -52,6 +52,7 @@ btnCityListClear.addEventListener("click", function (event) {
 function btnCityListClick(event, buttonId) {
 	event.preventDefault();
 	event.stopPropagation();
-	getCityCurrentWeather(buttonId);
+	getCityWeather(buttonId);
+	// getCityForecast(buttonId);
     // alert(buttonId + ' got clicked');
 }
