@@ -3,13 +3,13 @@
 // GLOBALS
 const gLocalStorageEntryName = 'citiesLatitudeLongitude';
 
-let gLocalStorageCities = localStorage.getItem('citiesLatitudeLongitude');
-console.log('gLocalStorageCities XXXXXXXXXXXX EVERY TIME WE LOAD');
-if (gLocalStorageCities && gLocalStorageCities != null) {
-  console.log(gLocalStorageCities);
-} else {
-  console.log('gLocalStorageCities/citiesLatitudeLongitude is empty!');
-}
+// let gLocalStorageCities = localStorage.getItem('citiesLatitudeLongitude');
+// console.log('gLocalStorageCities XXXXXXXXXXXX EVERY TIME WE LOAD');
+// if (gLocalStorageCities && gLocalStorageCities != null) {
+//   console.log(gLocalStorageCities);
+// } else {
+//   console.log('gLocalStorageCities/citiesLatitudeLongitude is empty!');
+// }
 
 //  DOM
 const citiesList = document.getElementById("cities-list");
@@ -18,7 +18,6 @@ const citiesList = document.getElementById("cities-list");
 function clearCityList() {
   localStorage.clear();
   reload();
-  // weather elements?.classList.add('hide');
 };
 
 // store in local storage
